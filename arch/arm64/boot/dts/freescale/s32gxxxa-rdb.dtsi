@@ -178,6 +178,18 @@
 	status = "okay";
 };
 
+&can2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&can2_pins>;
+	status = "okay";
+};
+
+&can3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&can3_pins>;
+	status = "okay";
+};
+
 &fccu {
 	status = "okay";
 };
