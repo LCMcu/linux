@@ -221,74 +221,90 @@
 &pinctrl {
 	can0_pins: can0_pins {
 		can0_grp0 {
-			pinmux = <S32CC_PINMUX(17, FUNC2)>;
+			// pinmux = <S32CC_PINMUX(17, FUNC2)>;
+			/*port:P21, name:PE_00, number:64, RDB3:USB_D2, ZHDZ:CAN0_TX*/
+			pinmux = <S32CC_PINMUX(64, FUNC2)>;
 			output-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
 		};
 
 		can0_grp1 {
-			pinmux = <S32CC_PINMUX(18, FUNC0)>;
+			// pinmux = <S32CC_PINMUX(18, FUNC0)>;
+			/*port:M23, name:PE_01, number:513, RDB3:USB_D3, ZHDZ:CAN0_TX*/
+			pinmux = <S32CC_PINMUX(513, FUNC0)>;
 			input-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
 		};
 
-		can0_grp2 {
-			pinmux = <S32CC_PINMUX(513, FUNC3)>;
-		};
+		// can0_grp2 {
+		// 	pinmux = <S32CC_PINMUX(513, FUNC3)>;
+		// };
 	};
 
 	can1_pins: can1_pins {
 		can1_grp0 {
-			pinmux = <S32CC_PINMUX(19, FUNC2)>;
+			// pinmux = <S32CC_PINMUX(19, FUNC2)>;
+			/*port:M21, name:PL_14, number:190, RDB3:USB_D6, ZHDZ:CAN1_TX*/
+			pinmux = <S32CC_PINMUX(190, FUNC2)>;
 			output-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
 		};
 
 		can1_grp1 {
-			pinmux = <S32CC_PINMUX(20, FUNC0)>;
+			// pinmux = <S32CC_PINMUX(20, FUNC0)>;
+			/*port:N23, name:PH_00, number:112, RDB3:USB_D7, ZHDZ:CAN1_RX*/
+			pinmux = <S32CC_PINMUX(112, FUNC0)>;
 			input-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
 		};
 
-		can1_grp2 {
-			pinmux = <S32CC_PINMUX(631, FUNC2)>;
-		};
+		// can1_grp2 {
+		// 	pinmux = <S32CC_PINMUX(631, FUNC2)>;
+		// };
 	};
 
 	can2_pins: can2_pins {
 		can2_grp0 {
-			pinmux = <S32CC_PINMUX(27, FUNC2)>;
+			// pinmux = <S32CC_PINMUX(27, FUNC2)>;
+			/*port:N19, name:PL_08, number:184, RDB3:USB_CLK, ZHDZ:CAN2_TX*/
+			pinmux = <S32CC_PINMUX(184, FUNC2)>;
 			output-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
 		};
 
 		can2_grp1 {
-			pinmux = <S32CC_PINMUX(28, FUNC0)>;
+			// pinmux = <S32CC_PINMUX(28, FUNC0)>;
+			/*port:N22, name:PL_11, number:187, RDB3:USB_NXT, ZHDZ:CAN2_RX*/
+			pinmux = <S32CC_PINMUX(187, FUNC0)>;
 			input-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
 		};
 
-		can2_grp2 {
-			pinmux = <S32CC_PINMUX(632, FUNC2)>;
-		};
+		// can2_grp2 {
+		// 	pinmux = <S32CC_PINMUX(632, FUNC2)>;
+		// };
 	};
 
 	can3_pins: can3_pins {
 		can3_grp0 {
-			pinmux = <S32CC_PINMUX(25, FUNC2)>;
+			// pinmux = <S32CC_PINMUX(25, FUNC2)>;
+			/*port:L23, name:PL_09, number:185, RDB3:USB_DIR, ZHDZ:CAN3_TX*/
+			pinmux = <S32CC_PINMUX(185, FUNC2)>;
 			output-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
 		};
 
 		can3_grp1 {
-			pinmux = <S32CC_PINMUX(26, FUNC0)>;
+			// pinmux = <S32CC_PINMUX(26, FUNC0)>;
+			/*port:P22, name:PL_10, number:186, RDB3:USB_STP, ZHDZ:CAN3_RX*/
+			pinmux = <S32CC_PINMUX(186, FUNC0)>;
 			input-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
 		};
 
-		can3_grp2 {
-			pinmux = <S32CC_PINMUX(633, FUNC2)>;
-		};
+		// can3_grp2 {
+		// 	pinmux = <S32CC_PINMUX(633, FUNC2)>;
+		// };
 	};
 
 	gmac0mdioa_pins: gmac0mdioa_pins {
@@ -998,88 +1014,105 @@
 
 &llce_can1 {
 	phys = <&can_phy01>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can2 {
 	phys = <&can_phy2>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can3 {
 	phys = <&can_phy3>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can4 {
 	phys = <&can_phy45>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can5 {
 	phys = <&can_phy45>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can6 {
 	phys = <&can_phy67>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can7 {
 	phys = <&can_phy67>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can8 {
 	phys = <&can_phy89>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can9 {
 	phys = <&can_phy89>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can10 {
 	phys = <&can_phy1011>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can11 {
 	phys = <&can_phy1011>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can12 {
 	phys = <&can_phy1213>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can13 {
 	phys = <&can_phy1213>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can14 {
 	phys = <&can_phy1415>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &llce_can15 {
 	phys = <&can_phy1415>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &usbmisc {
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &usbotg {
 	pinctrl-names = "default";
 	pinctrl-0 = <&usbotg_pins>;
 	fsl,usbphy = <&usbphynop>;
-	status = "okay";
+	// status = "okay";
+	status = "disabled";
 };
 
 &pcie0 {
