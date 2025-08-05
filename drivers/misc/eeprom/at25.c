@@ -20,6 +20,8 @@
 
 #include <linux/nvmem-provider.h>
 
+#include <linux/printk.h>
+
 /*
  * NOTE: this is an *EEPROM* driver. The vagaries of product naming
  * mean that some AT25 products are EEPROMs, and others are FLASH.
@@ -390,17 +392,28 @@ static int at25_fram_to_chip(struct device *dev, struct spi_eeprom *chip)
 	fm25_aux_read(at25, id, FM25_RDID, FM25_ID_LEN);
 	if (id[6] != 0xc2) {
 		dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
-		return -ENODEV;
+		// return -ENODEV; //-
+		goto manual_config; //+
 	}
 	/* Set size found in ID */
-	if (id[7] < 0x21 || id[7] > 0x26) {
+	if (id[7] < 0x21 || id[7] > 0x27) {
 		dev_err(dev, "Error: unsupported size (id %02x)\n", id[7]);
 		return -ENODEV;
 	}
-
 	chip->byte_len = BIT(id[7] - 0x21 + 4) * 1024;
 	if (chip->byte_len > 64 * 1024)
+	{//add
 		chip->flags |= EE_ADDR3;
+		//add
+		manual_config:
+	   	if (id[6] != 0xc2) {
+	       u32 val;
+	       if (!device_property_read_u32(dev, "size", &val)) {
+	           chip->byte_len = val;
+	           chip->flags |= (val > 64 * 1024) ? EE_ADDR3 : EE_ADDR2;
+	       }
+	   }
+	}//add
 	else
 		chip->flags |= EE_ADDR2;
 
@@ -436,15 +449,28 @@ static int at25_probe(struct spi_device *spi)
 	int			sr;
 	struct spi_eeprom *pdata;
 	bool is_fram;
+//+
+	/* 打印 SPI 设备信息 */
+    printk(KERN_INFO "AT25: Probing SPI device %s, chip select %d, max speed %d Hz\n",
+           dev_name(&spi->dev), spi->chip_select, spi->max_speed_hz);
 
+    /* 检查设备树中的 compatible 和其他属性 */
+    if (!spi->dev.of_node) {
+        printk(KERN_ERR "AT25: No device tree node found\n");
+        return -EINVAL;
+    }
+    printk(KERN_INFO "AT25: Device tree node found: %s\n", spi->dev.init_name);
+//+
 	/*
 	 * Ping the chip ... the status register is pretty portable,
 	 * unlike probing manufacturer IDs. We do expect that system
 	 * firmware didn't write it in the past few milliseconds!
 	 */
 	sr = spi_w8r8(spi, AT25_RDSR);
+	printk(KERN_INFO "AT25: spi_w8r8 sr: %08x\n", sr);
 	if (sr < 0 || sr & AT25_SR_nRDY) {
 		dev_dbg(&spi->dev, "rdsr --> %d (%02x)\n", sr, sr);
+		printk("rdsr --> %d (%02x)\n", sr, sr);
 		return -ENXIO;
 	}
 

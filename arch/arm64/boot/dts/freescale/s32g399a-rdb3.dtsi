@@ -86,3 +86,22 @@
 	 */
 	no-1-8-v;
 };
+
+/*zhdz add*/
+// &spi1 {
+// 	#address-cells = <1>;
+// 	#size-cells = <0>;
+//     status = "okay";
+
+//     fram0: cy15b116q-sxet@0 {        
+// 	compatible = "cypress,fm25";
+//     reg = <0>;
+//     spi-max-frequency = <20000000>;
+//     status = "okay";
+//     };
+// };
+
+// &pinctrl {
+
+// };
+

@@ -664,7 +664,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can1_pins>;
+				// pinctrl-0 = <&llce_can1_pins>;
 				status = "disabled";
 			};
 
@@ -677,7 +677,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can2_pins>;
+				// pinctrl-0 = <&llce_can2_pins>;
 				status = "disabled";
 			};
 
@@ -690,7 +690,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can3_pins>;
+				// pinctrl-0 = <&llce_can3_pins>;
 				status = "disabled";
 			};
 
@@ -703,7 +703,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can4_pins>;
+				// pinctrl-0 = <&llce_can4_pins>;
 				status = "disabled";
 			};
 
@@ -716,7 +716,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can5_pins>;
+				// pinctrl-0 = <&llce_can5_pins>;
 				status = "disabled";
 			};
 
@@ -729,7 +729,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can6_pins>;
+				// pinctrl-0 = <&llce_can6_pins>;
 				status = "disabled";
 			};
 
@@ -742,7 +742,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can7_pins>;
+				// pinctrl-0 = <&llce_can7_pins>;
 				status = "disabled";
 			};
 
@@ -755,7 +755,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can8_pins>;
+				// pinctrl-0 = <&llce_can8_pins>;
 				status = "disabled";
 			};
 
@@ -768,7 +768,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can9_pins>;
+				// pinctrl-0 = <&llce_can9_pins>;
 				status = "disabled";
 			};
 
@@ -781,7 +781,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can10_pins>;
+				// pinctrl-0 = <&llce_can10_pins>;
 				status = "disabled";
 			};
 
@@ -794,7 +794,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can11_pins>;
+				// pinctrl-0 = <&llce_can11_pins>;
 				status = "disabled";
 			};
 
@@ -807,7 +807,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can12_pins>;
+				// pinctrl-0 = <&llce_can12_pins>;
 				status = "disabled";
 			};
 
@@ -820,7 +820,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can13_pins>;
+				// pinctrl-0 = <&llce_can13_pins>;
 				status = "disabled";
 			};
 
@@ -833,7 +833,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can14_pins>;
+				// pinctrl-0 = <&llce_can14_pins>;
 				status = "disabled";
 			};
 
@@ -846,7 +846,7 @@
 				clocks = <&clks S32G_SCMI_CLK_LLCE_CAN_PE>;
 				clock-names = "can_pe";
 				pinctrl-names = "default";
-				pinctrl-0 = <&llce_can15_pins>;
+				// pinctrl-0 = <&llce_can15_pins>;
 				status = "disabled";
 			};
 
@@ -1050,275 +1050,275 @@
 		};
 	};
 
-	llce_can1_pins: llce_can1_pins {
-		llce_can1_grp0 {
-			pinmux = <S32CC_PINMUX(145, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// llce_can1_pins: llce_can1_pins {
+	// 	llce_can1_grp0 {
+	// 		pinmux = <S32CC_PINMUX(145, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can1_grp1 {
-			pinmux = <S32CC_PINMUX(746, FUNC2)>;
-		};
+	// 	llce_can1_grp1 {
+	// 		pinmux = <S32CC_PINMUX(746, FUNC2)>;
+	// 	};
 
-		llce_can1_grp2 {
-			pinmux = <S32CC_PINMUX(146, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can1_grp2 {
+	// 		pinmux = <S32CC_PINMUX(146, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can2_pins: llce_can2_pins {
-		llce_can2_grp0 {
-			pinmux = <S32CC_PINMUX(747, FUNC2)>;
-		};
+	// llce_can2_pins: llce_can2_pins {
+	// 	llce_can2_grp0 {
+	// 		pinmux = <S32CC_PINMUX(747, FUNC2)>;
+	// 	};
 
-		llce_can2_grp1 {
-			pinmux = <S32CC_PINMUX(148, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can2_grp1 {
+	// 		pinmux = <S32CC_PINMUX(148, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can2_grp2 {
-			pinmux = <S32CC_PINMUX(147, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can2_grp2 {
+	// 		pinmux = <S32CC_PINMUX(147, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can3_pins: llce_can3_pins {
-		llce_can3_grp0 {
-			pinmux = <S32CC_PINMUX(748, FUNC2)>;
-		};
+	// llce_can3_pins: llce_can3_pins {
+	// 	llce_can3_grp0 {
+	// 		pinmux = <S32CC_PINMUX(748, FUNC2)>;
+	// 	};
 
-		llce_can3_grp1 {
-			pinmux = <S32CC_PINMUX(150, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can3_grp1 {
+	// 		pinmux = <S32CC_PINMUX(150, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can3_grp2 {
-			pinmux = <S32CC_PINMUX(149, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can3_grp2 {
+	// 		pinmux = <S32CC_PINMUX(149, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can4_pins: llce_can4_pins {
-		llce_can4_grp0 {
-			pinmux = <S32CC_PINMUX(749, FUNC2)>;
-		};
+	// llce_can4_pins: llce_can4_pins {
+	// 	llce_can4_grp0 {
+	// 		pinmux = <S32CC_PINMUX(749, FUNC2)>;
+	// 	};
 
-		llce_can4_grp1 {
-			pinmux = <S32CC_PINMUX(152, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can4_grp1 {
+	// 		pinmux = <S32CC_PINMUX(152, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can4_grp2 {
-			pinmux = <S32CC_PINMUX(151, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can4_grp2 {
+	// 		pinmux = <S32CC_PINMUX(151, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can5_pins: llce_can5_pins {
-		llce_can5_grp0 {
-			pinmux = <S32CC_PINMUX(750, FUNC2)>;
-		};
+	// llce_can5_pins: llce_can5_pins {
+	// 	llce_can5_grp0 {
+	// 		pinmux = <S32CC_PINMUX(750, FUNC2)>;
+	// 	};
 
-		llce_can5_grp1 {
-			pinmux = <S32CC_PINMUX(154, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can5_grp1 {
+	// 		pinmux = <S32CC_PINMUX(154, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can5_grp2 {
-			pinmux = <S32CC_PINMUX(153, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can5_grp2 {
+	// 		pinmux = <S32CC_PINMUX(153, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can6_pins: llce_can6_pins {
-		llce_can6_grp0 {
-			pinmux = <S32CC_PINMUX(751, FUNC2)>;
-		};
+	// llce_can6_pins: llce_can6_pins {
+	// 	llce_can6_grp0 {
+	// 		pinmux = <S32CC_PINMUX(751, FUNC2)>;
+	// 	};
 
-		llce_can6_grp1 {
-			pinmux = <S32CC_PINMUX(156, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can6_grp1 {
+	// 		pinmux = <S32CC_PINMUX(156, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can6_grp2 {
-			pinmux = <S32CC_PINMUX(155, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can6_grp2 {
+	// 		pinmux = <S32CC_PINMUX(155, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can7_pins: llce_can7_pins {
-		llce_can7_grp0 {
-			pinmux = <S32CC_PINMUX(752, FUNC2)>;
-		};
+	// llce_can7_pins: llce_can7_pins {
+	// 	llce_can7_grp0 {
+	// 		pinmux = <S32CC_PINMUX(752, FUNC2)>;
+	// 	};
 
-		llce_can7_grp1 {
-			pinmux = <S32CC_PINMUX(158, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can7_grp1 {
+	// 		pinmux = <S32CC_PINMUX(158, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can7_grp2 {
-			pinmux = <S32CC_PINMUX(157, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can7_grp2 {
+	// 		pinmux = <S32CC_PINMUX(157, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can8_pins: llce_can8_pins {
-		llce_can8_grp0 {
-			pinmux = <S32CC_PINMUX(753, FUNC2)>;
-		};
+	// llce_can8_pins: llce_can8_pins {
+	// 	llce_can8_grp0 {
+	// 		pinmux = <S32CC_PINMUX(753, FUNC2)>;
+	// 	};
 
-		llce_can8_grp1 {
-			pinmux = <S32CC_PINMUX(160, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can8_grp1 {
+	// 		pinmux = <S32CC_PINMUX(160, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can8_grp2 {
-			pinmux = <S32CC_PINMUX(159, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can8_grp2 {
+	// 		pinmux = <S32CC_PINMUX(159, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can9_pins: llce_can9_pins {
-		llce_can9_grp0 {
-			pinmux = <S32CC_PINMUX(754, FUNC2)>;
-		};
+	// llce_can9_pins: llce_can9_pins {
+	// 	llce_can9_grp0 {
+	// 		pinmux = <S32CC_PINMUX(754, FUNC2)>;
+	// 	};
 
-		llce_can9_grp1 {
-			pinmux = <S32CC_PINMUX(162, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can9_grp1 {
+	// 		pinmux = <S32CC_PINMUX(162, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can9_grp2 {
-			pinmux = <S32CC_PINMUX(161, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can9_grp2 {
+	// 		pinmux = <S32CC_PINMUX(161, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can10_pins: llce_can10_pins {
-		llce_can10_grp0 {
-			pinmux = <S32CC_PINMUX(755, FUNC2)>;
-		};
+	// llce_can10_pins: llce_can10_pins {
+	// 	llce_can10_grp0 {
+	// 		pinmux = <S32CC_PINMUX(755, FUNC2)>;
+	// 	};
 
-		llce_can10_grp1 {
-			pinmux = <S32CC_PINMUX(164, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can10_grp1 {
+	// 		pinmux = <S32CC_PINMUX(164, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can10_grp2 {
-			pinmux = <S32CC_PINMUX(163, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can10_grp2 {
+	// 		pinmux = <S32CC_PINMUX(163, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can11_pins: llce_can11_pins {
-		llce_can11_grp0 {
-			pinmux = <S32CC_PINMUX(756, FUNC2)>;
-		};
+	// llce_can11_pins: llce_can11_pins {
+	// 	llce_can11_grp0 {
+	// 		pinmux = <S32CC_PINMUX(756, FUNC2)>;
+	// 	};
 
-		llce_can11_grp1 {
-			pinmux = <S32CC_PINMUX(166, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can11_grp1 {
+	// 		pinmux = <S32CC_PINMUX(166, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can11_grp2 {
-			pinmux = <S32CC_PINMUX(165, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can11_grp2 {
+	// 		pinmux = <S32CC_PINMUX(165, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can12_pins: llce_can12_pins {
-		llce_can12_grp0 {
-			pinmux = <S32CC_PINMUX(757, FUNC2)>;
-		};
+	// llce_can12_pins: llce_can12_pins {
+	// 	llce_can12_grp0 {
+	// 		pinmux = <S32CC_PINMUX(757, FUNC2)>;
+	// 	};
 
-		llce_can12_grp1 {
-			pinmux = <S32CC_PINMUX(168, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can12_grp1 {
+	// 		pinmux = <S32CC_PINMUX(168, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can12_grp2 {
-			pinmux = <S32CC_PINMUX(167, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can12_grp2 {
+	// 		pinmux = <S32CC_PINMUX(167, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can13_pins: llce_can13_pins {
-		llce_can13_grp0 {
-			pinmux = <S32CC_PINMUX(758, FUNC2)>;
-		};
+	// llce_can13_pins: llce_can13_pins {
+	// 	llce_can13_grp0 {
+	// 		pinmux = <S32CC_PINMUX(758, FUNC2)>;
+	// 	};
 
-		llce_can13_grp1 {
-			pinmux = <S32CC_PINMUX(170, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can13_grp1 {
+	// 		pinmux = <S32CC_PINMUX(170, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can13_grp2 {
-			pinmux = <S32CC_PINMUX(169, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can13_grp2 {
+	// 		pinmux = <S32CC_PINMUX(169, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can14_pins: llce_can14_pins {
-		llce_can14_grp0 {
-			pinmux = <S32CC_PINMUX(759, FUNC2)>;
-		};
+	// llce_can14_pins: llce_can14_pins {
+	// 	llce_can14_grp0 {
+	// 		pinmux = <S32CC_PINMUX(759, FUNC2)>;
+	// 	};
 
-		llce_can14_grp1 {
-			pinmux = <S32CC_PINMUX(172, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can14_grp1 {
+	// 		pinmux = <S32CC_PINMUX(172, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can14_grp2 {
-			pinmux = <S32CC_PINMUX(171, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can14_grp2 {
+	// 		pinmux = <S32CC_PINMUX(171, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
-	llce_can15_pins: llce_can15_pins {
-		llce_can15_grp0 {
-			pinmux = <S32CC_PINMUX(760, FUNC2)>;
-		};
+	// llce_can15_pins: llce_can15_pins {
+	// 	llce_can15_grp0 {
+	// 		pinmux = <S32CC_PINMUX(760, FUNC2)>;
+	// 	};
 
-		llce_can15_grp1 {
-			pinmux = <S32CC_PINMUX(174, FUNC0)>;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
+	// 	llce_can15_grp1 {
+	// 		pinmux = <S32CC_PINMUX(174, FUNC0)>;
+	// 		input-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
 
-		llce_can15_grp2 {
-			pinmux = <S32CC_PINMUX(173, FUNC1)>;
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-	};
+	// 	llce_can15_grp2 {
+	// 		pinmux = <S32CC_PINMUX(173, FUNC1)>;
+	// 		output-enable;
+	// 		slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+	// 	};
+	// };
 
 	llce_uart0_pins: llce_uart0_pins {
 		llce_uart0_pins_grp0 {
