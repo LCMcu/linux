@@ -101,7 +101,81 @@
 //     };
 // };
 
-// &pinctrl {
+&pinctrl {
+	dspi2_pins: dspi2_pins {
+		dspi2_grp0 {
+			pinmux = <S32CC_PINMUX(157, FUNC2)>;//MOSI PJ_13 A11 GPIO157
+			output-enable;
+			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+		};
 
-// };
+		dspi2_grp1 {
+			pinmux = <S32CC_PINMUX(155, FUNC2)>;//CS E12 PJ_11 GPIO155
+			output-enable;
+			input-enable;
+			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+			bias-pull-up;
+		};
 
+		dspi2_grp2 {
+			pinmux = <S32CC_PINMUX(153, FUNC3)>;//SCK B12 PJ_09 GPIO153
+			output-enable;
+			input-enable;
+			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+		};
+
+		dspi2_grp3 {
+			pinmux = <S32CC_PINMUX(158, FUNC0)>;//MISO C16 PJ_14 GPIO158
+			input-enable;
+			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+			bias-pull-up;
+		};
+
+		dspi2_grp4 {
+			pinmux = <S32CC_PINMUX(990, FUNC2)>,//CS
+				 	 <S32CC_PINMUX(991, FUNC3)>,//SCK
+				     <S32CC_PINMUX(992, FUNC3)>;//MISO
+		};
+	};
+
+	uart2_pins: uart2_pins {
+		uart2_pins_grp0 {
+			pinmux = <S32CC_PINMUX(171, FUNC2)>;
+			output-enable;
+			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+		};
+
+		uart2_pins_grp1 {
+			pinmux = <S32CC_PINMUX(172, FUNC0)>;
+			input-enable;
+			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
+		};
+
+		uart2_pins_grp2 {
+			pinmux = <S32CC_PINMUX(737, FUNC4)>;
+		};
+	};
+};
+
+&spi2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&dspi2_pins>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	spi-num-chipselects = <1>;
+
+    fram2: cy15b116q-sxet@0 {        
+		compatible = "cypress,fm25";
+    	reg = <0>;
+    	spi-max-frequency = <20000000>;
+    	status = "okay";
+    };
+};
+
+&uart2 {
+	pinctrl-0 = <&uart2_pins>;
+	pinctrl-names = "default";
+	status = "okay";
+};

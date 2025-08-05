@@ -446,44 +446,8 @@
 
 		dspi1_grp4 {
 			pinmux = <S32CC_PINMUX(985, FUNC2)>,//CS
-				 <S32CC_PINMUX(986, FUNC2)>,//SCK
-				 <S32CC_PINMUX(987, FUNC2)>;//MISO
-		};
-	};
-
-	dspi2_pins: dspi2_pins {
-		dspi2_grp0 {
-			pinmux = <S32CC_PINMUX(157, FUNC2)>;//MOSI PJ_13 A11 GPIO157
-			output-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-
-		dspi2_grp1 {
-			pinmux = <S32CC_PINMUX(155, FUNC2)>;//CS E12 PJ_10 GPIO155
-			output-enable;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-			bias-pull-up;
-		};
-
-		dspi2_grp2 {
-			pinmux = <S32CC_PINMUX(153, FUNC3)>;//SCK B12 PJ_09 GPIO153
-			output-enable;
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-		};
-
-		dspi2_grp3 {
-			pinmux = <S32CC_PINMUX(158, FUNC0)>;//MISO C16 PJ_14 GPIO158
-			input-enable;
-			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
-			bias-pull-up;
-		};
-
-		dspi2_grp4 {
-			pinmux = <S32CC_PINMUX(990, FUNC2)>,//CS
-				 	 <S32CC_PINMUX(986, FUNC3)>,//SCK
-				     <S32CC_PINMUX(992, FUNC3)>;//MISO
+				 	 <S32CC_PINMUX(986, FUNC2)>,//SCK
+				 	 <S32CC_PINMUX(987, FUNC2)>;//MISO
 		};
 	};
 
@@ -754,27 +718,10 @@
 	spi-num-chipselects = <1>;
 
     fram1: cy15b116q-sxet@0 {        
-	compatible = "cypress,fm25";
-    reg = <0>;
-    spi-max-frequency = <20000000>;
-    status = "okay";
-    };
-};
-
-&spi2 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&dspi2_pins>;
-	#address-cells = <1>;
-	#size-cells = <0>;
-	status = "okay";
-
-	spi-num-chipselects = <1>;
-
-    fram2: cy15b116q-sxet@0 {        
-	compatible = "cypress,fm25";
-    reg = <0>;
-    spi-max-frequency = <20000000>;
-    status = "okay";
+		compatible = "cypress,fm25";
+    	reg = <0>;
+    	spi-max-frequency = <20000000>;
+    	status = "okay";
     };
 };
 
