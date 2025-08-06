@@ -32,7 +32,8 @@
  *   AT25M02, AT25128B
  */
 
-#define	FM25_SN_LEN	8		/* serial number length */
+// #define	FM25_SN_LEN	8		/* serial number length */
+#define	FM25_SN_LEN	9		/* serial number length */
 #define EE_MAXADDRLEN	3		/* 24 bit addresses, up to 2 MBytes */
 
 struct at25_data {
@@ -390,6 +391,10 @@ static int at25_fram_to_chip(struct device *dev, struct spi_eeprom *chip)
 
 	/* Get ID of chip */
 	fm25_aux_read(at25, id, FM25_RDID, FM25_ID_LEN);
+	for(i = 0; i < 8; i++)
+	{
+		printk(KERN_INFO "fram id[%d]:0x%02x\n", i, id[i]);
+	}
 	if (id[6] != 0xc2) {
 		dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
 		// return -ENODEV; //-
@@ -467,7 +472,7 @@ static int at25_probe(struct spi_device *spi)
 	 * firmware didn't write it in the past few milliseconds!
 	 */
 	sr = spi_w8r8(spi, AT25_RDSR);
-	printk(KERN_INFO "AT25: spi_w8r8 sr: %02x\n", sr);
+	printk(KERN_INFO "AT25: spi_w8r8 sr: 0x%02x\n", sr);
 	if (sr < 0 || sr & AT25_SR_nRDY) {
 		printk("rdsr --> %d (%02x)\n", sr, sr);
 		dev_dbg(&spi->dev, "rdsr --> %d (%02x)\n", sr, sr);

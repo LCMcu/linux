@@ -170,7 +170,7 @@
 		compatible = "cypress,fm25";
     	reg = <0>;
     	// spi-max-frequency = <20000000>;
-    	spi-max-frequency = <20000000>;
+    	spi-max-frequency = <100000>;
     	status = "okay";
     };
 };
