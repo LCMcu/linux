@@ -169,8 +169,8 @@
     fram2: cy15b116q-sxet@0 {        
 		compatible = "cypress,fm25";
     	reg = <0>;
-    	// spi-max-frequency = <20000000>;
-    	spi-max-frequency = <100000>;
+    	spi-max-frequency = <20000000>;
+    	// spi-max-frequency = <100000>;
 		size = <1000000>;
     	status = "okay";
     };

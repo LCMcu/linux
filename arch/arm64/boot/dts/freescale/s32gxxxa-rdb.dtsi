@@ -119,8 +119,8 @@
 &pfe {
 	status = "okay";
 	pinctrl-names = "default";
-	pinctrl-0 = <&pfe2mdiob_pins>,
-		    <&pfe2rgmiib_pins>;
+	// pinctrl-0 = <&pfe2mdiob_pins>,
+	// 	    <&pfe2rgmiib_pins>;
 };
 
 &pfe_mdio0 {
@@ -135,9 +135,10 @@
 
 &pfe_mdio2 {
 	/* AR8035 */
-	pfe_mdio_b_phy4: ethernet-phy@4 {
-		reg = <4>;
-	};
+	// pfe_mdio_b_phy4: ethernet-phy@4 {
+	// 	reg = <4>;
+	// };
+	status = "disabled";
 	/* SJA1110's phys: 0x09-0x0e */
 };
 
@@ -155,7 +156,12 @@
 
 &pfe_netif2 {
 	phy-mode = "rgmii-id";
-	phy-handle = <&pfe_mdio_b_phy4>;
+	// phy-handle = <&pfe_mdio_b_phy4>;
+	fixed-link {
+		// speed = <2500>;
+		speed = <1000>;
+		full-duplex;
+	};
 };
 
 &usdhc0 {
