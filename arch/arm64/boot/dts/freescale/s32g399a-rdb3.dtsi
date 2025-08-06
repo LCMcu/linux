@@ -118,7 +118,7 @@
 		};
 
 		dspi2_grp2 {
-			pinmux = <S32CC_PINMUX(153, FUNC3)>;//SCK B12 PJ_09 GPIO153
+			pinmux = <S32CC_PINMUX(153, FUNC2)>;//SCK B12 PJ_09 GPIO153
 			output-enable;
 			input-enable;
 			slew-rate = <S32CC_GPIO_3V3_SLEW_50MHZ>;
@@ -169,6 +169,7 @@
     fram2: cy15b116q-sxet@0 {        
 		compatible = "cypress,fm25";
     	reg = <0>;
+    	// spi-max-frequency = <20000000>;
     	spi-max-frequency = <20000000>;
     	status = "okay";
     };
