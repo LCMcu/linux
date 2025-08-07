@@ -131,6 +131,9 @@
 	pfe_mdio_b_phy0: ethernet-phy@0 { //+
 		reg = <0>;                    //+
 	};                                //+
+	// pfe_mdio_b_phy1: ethernet-phy@1 { //+
+	// 	reg = <1>;                    //+
+	// };                                //+
 };
 
 &pfe_mdio1 {
