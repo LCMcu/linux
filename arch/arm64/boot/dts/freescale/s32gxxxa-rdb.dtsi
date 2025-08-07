@@ -165,7 +165,11 @@
 
 &pfe_netif1 {
 	phy-mode = "sgmii";
-	phy-handle = <&pfe_mdio_b_phy1>; //+
+	// phy-handle = <&pfe_mdio_b_phy1>; //+
+	fixed-link {                  //+
+		speed = <1000>;           //+ 
+		full-duplex;              //+
+	};                            //+  
 };
 
 &pfe_netif2 {
@@ -412,6 +416,26 @@
 			pinmux = <S32CC_PINMUX(837, FUNC2)>;
 		};
 	};	
+	//+
+	pfe1mdiob_pins: pfe1mdiob_pins {
+		pfe1mdiob_grp0 {
+			pinmux = <S32CC_PINMUX(82, FUNC1)>;
+			output-enable;
+			slew-rate = <S32CC_FAST_SLEW_166MHZ>;
+		};
+
+		pfe1mdiob_grp1 {
+			pinmux = <S32CC_PINMUX(79, FUNC1)>;
+			output-enable;
+			input-enable;
+			slew-rate = <S32CC_FAST_SLEW_166MHZ>;
+		};
+
+		pfe1mdiob_grp2 {
+			pinmux = <S32CC_PINMUX(837, FUNC2)>;
+		};
+	};
+	//		
 	//
 	pfe2rgmiib_pins: pfe2rgmiib_pins {
 		pfe2rgmiib_grp0 {
