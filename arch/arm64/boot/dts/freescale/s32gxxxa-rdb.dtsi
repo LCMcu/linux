@@ -119,8 +119,6 @@
 &pfe {
 	status = "okay";
 	pinctrl-names = "default";
-	// pinctrl-0 = <&pfe2mdiob_pins>,
-	// 	    <&pfe2rgmiib_pins>;
 	pinctrl-0 = <&pfe0mdiob_pins>; //+
 };
 
@@ -131,16 +129,12 @@
 	pfe_mdio_b_phy0: ethernet-phy@0 { //+
 		reg = <0x00>;                    //+
 	};                                //+
-};
 
-&pfe_mdio1 {
-	/* occupied by GMAC0 */
-	// status = "disabled";
-	//+
 	pfe_mdio_b_phy1: ethernet-phy@1 { //+
 		reg = <0x01>;                    //+
 	};                                //+
 };
+
 
 &pfe_mdio2 {
 	/* AR8035 */
@@ -154,19 +148,11 @@
 &pfe_netif0 {
 	phy-mode = "sgmii";
 	phy-handle = <&pfe_mdio_b_phy0>; //+
-	// fixed-link {
-	// 	speed = <2500>;
-	// 	full-duplex;
-	// };
 };
 
 &pfe_netif1 {
 	phy-mode = "sgmii";
-	// phy-handle = <&pfe_mdio_b_phy1>; //+
-	fixed-link {                  //+
-		speed = <1000>;           //+ 
-		full-duplex;              //+
-	};                            //+  
+	phy-handle = <&pfe_mdio_b_phy1>; //+
 };
 
 &pfe_netif2 {
