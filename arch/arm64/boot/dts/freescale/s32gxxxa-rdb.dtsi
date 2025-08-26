@@ -123,9 +123,7 @@
 };
 
 &pfe_mdio0 {
-	/* unused */
-	// status = "disabled";
-	//+
+	// clock-frequency = <100000>;
 	pfe_mdio_b_phy0: ethernet-phy@0 { //+
 		reg = <0x00>;                    //+
 	};                                //+
