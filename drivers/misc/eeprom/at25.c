@@ -21,6 +21,7 @@
 #include <linux/nvmem-provider.h>
 
 #include <linux/printk.h>
+#include <linux/of.h>
 
 /*
  * NOTE: this is an *EEPROM* driver. The vagaries of product naming
@@ -32,8 +33,9 @@
  *   AT25M02, AT25128B
  */
 
-// #define	FM25_SN_LEN	8		/* serial number length */
+//#define	FM25_SN_LEN	8		/* serial number length */
 #define	FM25_SN_LEN	9		/* serial number length */
+
 #define EE_MAXADDRLEN	3		/* 24 bit addresses, up to 2 MBytes */
 
 struct at25_data {
@@ -53,6 +55,7 @@ struct at25_data {
 #define	AT25_WRSR	0x01		/* write status register */
 #define	AT25_READ	0x03		/* read byte(s) */
 #define	AT25_WRITE	0x02		/* write byte(s)/sector */
+
 #define	FM25_SLEEP	0xb9		/* enter sleep mode */
 #define	FM25_RDID	0x9f		/* read device ID */
 #define	FM25_RDSN	0xc3		/* read S/N */
@@ -200,6 +203,7 @@ ATTRIBUTE_GROUPS(sernum);
 
 static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
 {
+        
 	struct at25_data *at25 = priv;
 	size_t maxsz = spi_max_transfer_size(at25->spi);
 	const char *buf = val;
@@ -380,6 +384,9 @@ static int at25_fw_to_chip(struct device *dev, struct spi_eeprom *chip)
 	return 0;
 }
 
+/**********************************************************************************************************************************/
+
+//fram id:0x20 0x2e 0xc2
 static int at25_fram_to_chip(struct device *dev, struct spi_eeprom *chip)
 {
 	struct at25_data *at25 = container_of(chip, struct at25_data, chip);
@@ -391,45 +398,66 @@ static int at25_fram_to_chip(struct device *dev, struct spi_eeprom *chip)
 
 	/* Get ID of chip */
 	fm25_aux_read(at25, id, FM25_RDID, FM25_ID_LEN);
-	for(i = 0; i < 8; i++)
+	for(i = 0; i < FM25_SN_LEN; i++)
 	{
 		printk(KERN_INFO "fram id[%d]:0x%02x\n", i, id[i]);
 	}
-	if (id[6] != 0xc2) {
-		dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
+	
+	if (id[0] != 0x20) {
+		dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[0]);
 		// return -ENODEV; //-
 		goto manual_config; //+
+		//return -ENODEV;
 	}
+	
 	/* Set size found in ID */
-	if (id[7] < 0x21 || id[7] > 0x27) {
-		dev_err(dev, "Error: unsupported size (id %02x)\n", id[7]);
+	if (id[1] < 0x2e) {
+		dev_err(dev, "Error: unsupported size (id %02x)\n", id[1]);
 		return -ENODEV;
 	}
-	chip->byte_len = BIT(id[7] - 0x21 + 4) * 1024;
+#if 1	
+	chip->byte_len = BIT(id[1] - 0x21 + 4) * 1024;
 	if (chip->byte_len > 64 * 1024)
 	{//add
-		chip->flags |= EE_ADDR3;
-		//add
-		manual_config:
-	   	if (id[6] != 0xc2) {
-	       u32 val;
-	       if (!device_property_read_u32(dev, "size", &val)) {
+	    chip->flags |= EE_ADDR3;
+	    //add
+manual_config:
+	   //if (id[2] != 0xc2) 
+	   if (id[2] == 0xc2) 
+	   {
+	       u32 val=0;
+	       if (!device_property_read_u32(dev, "size", &val)) 
+	       {
 	           chip->byte_len = val;
+	           printk(KERN_INFO "chip->byte_len :%d..\n",chip->byte_len );
 	           chip->flags |= (val > 64 * 1024) ? EE_ADDR3 : EE_ADDR2;
 	       }
 	   }
 	}//add
 	else
+	{
 		chip->flags |= EE_ADDR2;
+	}
 
-	if (id[8]) {
+	if (id[0]) 
+	{
 		fm25_aux_read(at25, sernum, FM25_RDSN, FM25_SN_LEN);
 		/* Swap byte order */
 		for (i = 0; i < FM25_SN_LEN; i++)
+		{
 			at25->sernum[i] = sernum[FM25_SN_LEN - 1 - i];
+		}
+		
+		for(i = 0; i < FM25_SN_LEN; i++)
+		{
+		    printk(KERN_INFO "at25->sernum[%d]:0x%02x...\n",i,at25->sernum[i]);
+		}
 	}
-
 	chip->page_size = PAGE_SIZE;
+#endif
+        //chip->flags |= EE_ADDR3;
+	//chip->page_size = 256;
+	
 	return 0;
 }
 
@@ -449,22 +477,43 @@ MODULE_DEVICE_TABLE(spi, at25_spi_ids);
 
 static int at25_probe(struct spi_device *spi)
 {
+        char   spi_fram_dev_name[100]={0};
 	struct at25_data	*at25 = NULL;
 	int			err;
 	int			sr;
 	struct spi_eeprom *pdata;
 	bool is_fram;
+	unsigned char readBuffer[256]={0};
+	unsigned char writeBuffer[256]={0};
+	int i=0;
+	
+	struct device *uFramDev = &spi->dev;
+        struct device_node *uFramNode = uFramDev->of_node;
+        
+        printk("Device Tree Probing...\n");
+	printk("node name:%s...\n",uFramNode->name);
+	printk("node full name:%s...\n",uFramNode->full_name);
+	printk("node parent name:%s...\n",uFramNode->parent->name);
+	
+	for(i=0;i<256;i++)
+	{
+	    writeBuffer[i]=i;
+	}
 //+
 	/* 打印 SPI 设备信息 */
-    printk(KERN_INFO "AT25: Probing SPI device %s, chip select %d, max speed %d Hz\n",
-           dev_name(&spi->dev), spi->chip_select, spi->max_speed_hz);
+        printk(KERN_INFO "AT25: Probing SPI device %s, chip select %d, max speed %d Hz\n",dev_name(&spi->dev), spi->chip_select, spi->max_speed_hz);
 
-    /* 检查设备树中的 compatible 和其他属性 */
-    if (!spi->dev.of_node) {
-        printk(KERN_ERR "AT25: No device tree node found\n");
-        return -EINVAL;
-    }
-    printk(KERN_INFO "AT25: Device tree node found: %s\n", spi->dev.init_name);
+       //printk("KERN_INFO "dev.of_node: %s\n",*(spi->dev.of_node));
+       
+       /* 检查设备树中的 compatible 和其他属性 */
+       if (!spi->dev.of_node) 
+       {
+           printk(KERN_ERR "AT25: No device tree node found\n");
+           return -EINVAL;
+       }
+       
+       printk(KERN_INFO "AT25: Device tree node found: %s\n", dev_name(&spi->dev)); 
+       
 //+
 	/*
 	 * Ping the chip ... the status register is pretty portable,
@@ -473,7 +522,8 @@ static int at25_probe(struct spi_device *spi)
 	 */
 	sr = spi_w8r8(spi, AT25_RDSR);
 	printk(KERN_INFO "AT25: spi_w8r8 sr: 0x%02x\n", sr);
-	if (sr < 0 || sr & AT25_SR_nRDY) {
+	if (sr < 0 || sr & AT25_SR_nRDY) 
+	{
 		printk("rdsr --> %d (%02x)\n", sr, sr);
 		dev_dbg(&spi->dev, "rdsr --> %d (%02x)\n", sr, sr);
 		return -ENXIO;
@@ -481,8 +531,10 @@ static int at25_probe(struct spi_device *spi)
 
 	at25 = devm_kzalloc(&spi->dev, sizeof(*at25), GFP_KERNEL);
 	if (!at25)
+	{
 		return -ENOMEM;
-
+        }
+        
 	mutex_init(&at25->lock);
 	at25->spi = spi;
 	spi_set_drvdata(spi, at25);
@@ -491,31 +543,57 @@ static int at25_probe(struct spi_device *spi)
 
 	/* Chip description */
 	pdata = dev_get_platdata(&spi->dev);
-	if (pdata) {
+	if (pdata) 
+	{
 		at25->chip = *pdata;
-	} else {
-		if (is_fram)
-			err = at25_fram_to_chip(&spi->dev, &at25->chip);
-		else
-			err = at25_fw_to_chip(&spi->dev, &at25->chip);
-		if (err)
-			return err;
 	}
+	 else 
+	 {
+		if (is_fram)
+		{
+		        printk(KERN_INFO "call at25_fram_to_chip()...\n");
+			err = at25_fram_to_chip(&spi->dev, &at25->chip);
+		}
+		else
+		{
+			err = at25_fw_to_chip(&spi->dev, &at25->chip);
+		}
+		if (err)
+		{
+			return err;
+		}
+	}
+	
+	printk(KERN_INFO "1111111111111111111111111111...\n");
 
 	/* For now we only support 8/16/24 bit addressing */
 	if (at25->chip.flags & EE_ADDR1)
+	{
+	        printk(KERN_INFO "addr mode:8...\n");
 		at25->addrlen = 1;
+	}
 	else if (at25->chip.flags & EE_ADDR2)
+	{
+	        printk(KERN_INFO "addr mode:16...\n");
 		at25->addrlen = 2;
+	}
 	else if (at25->chip.flags & EE_ADDR3)
+	{
+	        printk(KERN_INFO "addr mode:24...\n");
 		at25->addrlen = 3;
-	else {
+	}
+	else 
+	{
 		dev_dbg(&spi->dev, "unsupported address type\n");
 		return -EINVAL;
 	}
+	
+	printk(KERN_INFO "2222222222222222222222222222...\n");
 
 	at25->nvmem_config.type = is_fram ? NVMEM_TYPE_FRAM : NVMEM_TYPE_EEPROM;
-	at25->nvmem_config.name = dev_name(&spi->dev);
+	sprintf(spi_fram_dev_name,"%s-fram",dev_name(&spi->dev));
+	//at25->nvmem_config.name = dev_name(&spi->dev);
+	at25->nvmem_config.name=spi_fram_dev_name;
 	at25->nvmem_config.dev = &spi->dev;
 	at25->nvmem_config.read_only = at25->chip.flags & EE_READONLY;
 	at25->nvmem_config.root_only = true;
@@ -529,17 +607,43 @@ static int at25_probe(struct spi_device *spi)
 	at25->nvmem_config.word_size = 1;
 	at25->nvmem_config.size = at25->chip.byte_len;
 
-	at25->nvmem = devm_nvmem_register(&spi->dev, &at25->nvmem_config);
+	//at25->nvmem = devm_nvmem_register(&spi->dev, &at25->nvmem_config);
+	at25->nvmem = nvmem_register(&at25->nvmem_config);
+	
+	printk(KERN_INFO "nvmem_register(),device naem:%s...\n",at25->nvmem_config.name);
+	
+	printk(KERN_INFO "3333333333333333333333333333333333333...\n");
 	if (IS_ERR(at25->nvmem))
 		return PTR_ERR(at25->nvmem);
+		
+	printk(KERN_INFO "44444444444444444444444444444444444..\n");
 
 	dev_info(&spi->dev, "%d %s %s %s%s, pagesize %u\n",
 		 (at25->chip.byte_len < 1024) ?
-			at25->chip.byte_len : (at25->chip.byte_len / 1024),
+			at25->chip.byte_len : (at25->chip.byte_len / 1000),
 		 (at25->chip.byte_len < 1024) ? "Byte" : "KByte",
 		 at25->chip.name, is_fram ? "fram" : "eeprom",
 		 (at25->chip.flags & EE_READONLY) ? " (readonly)" : "",
 		 at25->chip.page_size);
+#if 0		 
+        printk(KERN_INFO "f-ram read test........read1..\n");
+        at25->nvmem_config.reg_read(at25,0,readBuffer,20);
+        for(i=0;i<20;i++)
+        {
+            printk(KERN_INFO "readBuffer[%d]:0x%02x...\n",i,readBuffer[i]);
+        }
+        
+        printk(KERN_INFO "f-ram read test........write..\n");
+        at25->nvmem_config.reg_write(at25,0,writeBuffer,20);
+        
+        printk(KERN_INFO "f-ram read test........read2..\n");
+        at25->nvmem_config.reg_read(at25,0,readBuffer,20);
+        for(i=0;i<20;i++)
+        {
+            printk(KERN_INFO "readBuffer[%d]:0x%02x...\n",i,readBuffer[i]);
+        }
+#endif		 
+
 	return 0;
 }
 
@@ -547,9 +651,9 @@ static int at25_probe(struct spi_device *spi)
 
 static struct spi_driver at25_driver = {
 	.driver = {
-		.name		= "at25",
-		.of_match_table = at25_of_match,
-		.dev_groups	= sernum_groups,
+		.name		  = "at25",
+		.of_match_table  = at25_of_match,
+		.dev_groups	 = sernum_groups,
 	},
 	.probe		= at25_probe,
 	.id_table	= at25_spi_ids,
